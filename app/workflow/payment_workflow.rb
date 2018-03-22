@@ -3,7 +3,7 @@ module PaymentWorkflow
 	def self.included(klass)
 
 		klass.send(:state_machine, :state, :initial => :pending) do
-			after_transition :on => :success, :do => :update_product_to_cherry
+			after_transition :on => :success, :do => :update_status_date
 			after_transition any => :failed do |payment, transition|
 				payment.status_date = Time.now
 			end
